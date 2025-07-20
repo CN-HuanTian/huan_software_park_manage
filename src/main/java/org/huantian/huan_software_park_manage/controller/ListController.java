@@ -41,6 +41,7 @@ public class ListController {
         System.out.println("1111");
         System.out.println("2222");
         System.out.println("2222");
+        System.out.println("Ciallo");
 
         if (groupService.findById(data.getGroupId()) == null) {
             return Result.error(Result.Code.NOT_FOUND, "父分组不存在");
