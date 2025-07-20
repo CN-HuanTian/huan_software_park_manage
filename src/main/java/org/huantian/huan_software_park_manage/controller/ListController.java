@@ -26,22 +26,7 @@ public class ListController {
     @PostMapping("/add")
     public Result add(@Valid @RequestBody ListCreateDTO data){
 
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("1111");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("Ciallo");
+        System.out.println("master");
 
         if (groupService.findById(data.getGroupId()) == null) {
             return Result.error(Result.Code.NOT_FOUND, "父分组不存在");
