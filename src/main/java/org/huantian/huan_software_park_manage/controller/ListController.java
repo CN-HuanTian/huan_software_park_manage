@@ -48,6 +48,7 @@ public class ListController {
     public Result update(@Valid @RequestBody ListUpdateDTO data){
         if (groupService.findById(data.getGroupId()) == null) {
             return Result.error(Result.Code.NOT_FOUND, "父分组不存在");
+
         }
         ListPO lo = listService.findById(data.getId());
         if (lo == null) {
