@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress SqlConstantExpression, SqlConstantCondition -->
+<mapper namespace="org.huantian.huan_software_park_manage.mapper.GroupMapper">
+
+    <select id="list" resultType="org.huantian.huan_software_park_manage.pojo.po.GroupPO">
+        SELECT *
+        FROM huan_software_park_manage.category_group
+        WHERE 1=1
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="keyWord != null and keyWord != ''">
+            AND (
+            label LIKE CONCAT('%', #{keyWord}, '%')
+            OR remarks LIKE CONCAT('%', #{keyWord}, '%')
+            )
+        </if>
+        <!-- 多选值筛选 -->
+        <if test="classifyId != null and classifyId.size() > 0">
+            AND classify_id IN  <!-- 注意这里应该是classify_id字段 -->
+            <foreach item="id" collection="classifyId" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        ORDER BY id DESC
+    </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huantian.huan_software_park_manage.mapper.ClassifyMapper">
+
+    <select id="list" resultType="org.huantian.huan_software_park_manage.pojo.po.ClassifyPO">
+        SELECT *
+        FROM huan_software_park_manage.category_classify
+        WHERE 1=1
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="keyWord != null and keyWord != ''">
+            AND (
+            label LIKE CONCAT('%', #{keyWord}, '%')
+            OR remarks LIKE CONCAT('%', #{keyWord}, '%')
+            )
+        </if>
+        ORDER BY id DESC
+    </select>
+</mapper>
